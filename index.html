@@ -8,10 +8,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>Static Top Navbar Example for Bootstrap</title>
+    <title>Angular js form validation</title>
     <!-- Bootstrap core CSS -->
     <link href="./libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="./libraries/bootstrap/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="./libraries/bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="./libraries/others/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -30,29 +31,31 @@
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Form validation using Angular JS</a>
         </div>
         <!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="container">
+    <div class="container" ng-app="validationApp" ng-controller="mainController">
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <form class="form-horizontal">
-          <div class="form-group input-border">
+        <form class="form-horizontal" name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+          <div class="form-group">
             <label for="best_tour" class="col-sm-2 control-label">Best tour start time</label>
-            <div class="col-sm-5">
-            <div class="input-group calendar">
-              <input name="start_date" type="text" class="form-control datepicker" id="start" placeholder="Oct 05, 2016">
+            <div class="col-sm-5" ng-class="{ 'has-error' : userForm.start_date.$invalid && submitted }">
+            <div class="input-group date" id="start_date_picker">
+              <input name="start_date" type="text" class="form-control datepicker" id="start" placeholder="Oct 05, 2016" ng-model="book.start_date" required>
               <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
             </div>
+            <span ng-show="userForm.start_date.$error.required && submitted" class="help-block">You start date required.</span>
             </div>
             
-            <div class="col-sm-5">
-            <div class="input-group">
-              <input name="start_time" type="text" class="form-control" id="time" placeholder="8:00 am">
+            <div class="col-sm-5" ng-class="{ 'has-error' : userForm.start_time.$invalid && submitted }">
+            <div class="input-group date" id="start_time_picker">
+              <input name="start_time" type="text" class="form-control" id="start_time" placeholder="8:00 am" ng-model="start_time" required>
               <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
               </div>
+              <span ng-show="userForm.start_time.$error.required && submitted" class="help-block">You start time is required.</span>
             </div>
           </div>
           <div class="form-group input-border">
@@ -66,24 +69,26 @@
           </div>
           <div class="form-group input-border">
             <label for="best_tour" class="col-sm-2 control-label">When will you be in town</label>
-            <div class="col-sm-5">
-            <div class="input-group calendar">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+            <div class="col-sm-5" ng-class="{ 'has-error' : userForm.town_start_date.$invalid && submitted }">
+            <div class="input-group date" id="town_start_date_picker">
+              <input type="text" class="form-control" id="town_start_date" placeholder="Oct 02, 2016" name="town_start_date" ng-model="town_start_date" required>
               <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
             </div>
+            <span ng-show="userForm.town_start_date.$error.required && submitted" class="help-block">You available date is required.</span>
             </div>
             
-            <div class="col-sm-5">
-            <div class="input-group calendar">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+            <div class="col-sm-5" ng-class="{ 'has-error' : userForm.town_end_date.$invalid && submitted }">
+            <div class="input-group date" id="town_end_date_picker">
+              <input type="text" class="form-control" id="town_end_date" placeholder="Oct 06, 2016" name="town_end_date" ng-model="town_end_date"  required>
               <span class="input-group-addon glyphicon glyphicon-calendar" aria-hidden="true"></span>
               </div>
+              <span ng-show="userForm.town_end_date.$error.required && submitted" class="help-block">You available date is required.</span>
             </div>
           </div>
           <hr>
           <div class="form-group">
             <div class="col-sm-offset-6 col-sm-10">
-              <button type="submit" class="btn btn-default">Next</button>
+              <button type="submit" class="btn btn-default" >Next</button>
             </div>
           </div>
         </form>
@@ -95,7 +100,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="./libraries/jquery/js/jquery.min.js"><\/script>')</script>
+    <script src="./libraries/angular/js/angular.min.js"></script>
     <script src="./libraries/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./libraries/bootstrap/js/moment-with-locales.js"></script>
+    <script src="./libraries/bootstrap/js/bootstrap-datetimepicker.js"></script>
     <script src="./libraries/bootstrap/js/bootstrap-datepicker.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./libraries/others/js/ie10-viewport-bug-workaround.js"></script>
